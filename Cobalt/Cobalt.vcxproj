@@ -145,10 +145,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="curlhook.h" />
-    <ClInclude Include="curldefinitions.h" />
     <ClInclude Include="exithook.h" />
     <ClInclude Include="memcury.h" />
     <ClInclude Include="settings.h" />
+    <ClInclude Include="url.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
