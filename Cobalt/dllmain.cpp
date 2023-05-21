@@ -26,7 +26,7 @@ bool InitializeCurlHook()
 
     if (!CurlEasySetOptAddr)
     {
-        std::cout << "Failed to find CurlEasySetOptAddr!";
+        std::cout << "Failed to find CurlEasySetOptAddr!\n";
         return false;
     }
 
@@ -38,7 +38,7 @@ bool InitializeCurlHook()
     }
     else
     {
-        Memcury::VEHHook::AddHook(curl_easy_setopt_original, Hijacked_curl_easy_setopt);
+        Memcury::VEHHook::AddHook(curl_easy_setopt_original, Hijacked_curl_easy_setopt); // TODO find a better way to "bypass" UAC.
     }
 
     return true;
@@ -81,7 +81,7 @@ DWORD WINAPI Main(LPVOID)
 
     if (result)
     {
-        std::cout << "Cobalt v0.1 initialized sucessfully.";
+        std::cout << "Cobalt v0.1 initialized sucessfully.\n";
     }
     else
     {

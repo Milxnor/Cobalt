@@ -5,12 +5,11 @@
 
 #include "curldefinitions.h"
 #include "memcury.h"
+#include "settings.h"
 
 // #define HYBRID_ENABLED
 
 auto (*curl_easy_setopt_original)(CURL* Curl, uintptr_t opt, ...)->CURLcode;
-
-std::string FNhost = "127.0.0.1:3551";
 
 //This routine is used for setting up curl. we will be hijacking this to change the values.
 auto Hijacked_curl_easy_setopt(CURL* Curl, uintptr_t opt, va_list info) -> CURLcode
@@ -36,22 +35,22 @@ auto Hijacked_curl_easy_setopt(CURL* Curl, uintptr_t opt, va_list info) -> CURLc
         std::regex Host(("(.*).ol.epicgames.com"));
 #ifdef HYBRID_ENABLED
         if (std::regex_search(info, std::regex(("/fortnite/api/cloudstorage/system")))) {
-            url = std::regex_replace(info, Host, FNhost);
+            url = std::regex_replace(info, Host, REDIRECT_TO_HOST);
         }
         else if (std::regex_search(info, std::regex(("/fortnite/api/v2/versioncheck/")))) {
-            url = std::regex_replace(info, Host, FNhost);
+            url = std::regex_replace(info, Host, REDIRECT_TO_HOST);
         }
         else if (std::regex_search(info, std::regex(("/fortnite/api/game/v2/profile")))) {
-            url = std::regex_replace(info, Host, FNhost);
+            url = std::regex_replace(info, Host, REDIRECT_TO_HOST);
         }
         else if (std::regex_search(info, std::regex(("/content/api/pages/fortnite-game")))) {
-            url = std::regex_replace(info, Host, FNhost);
+            url = std::regex_replace(info, Host, REDIRECT_TO_HOST);
         }
         else if (std::regex_search(info, std::regex(("/affiliate/api/public/affiliates/slug")))) {
-            url = std::regex_replace(info, Host, FNhost);
+            url = std::regex_replace(info, Host, REDIRECT_TO_HOST);
         }
         else if (std::regex_search(info, std::regex(("/socialban/api/public/v1")))) {
-            url = std::regex_replace(info, Host, FNhost);
+            url = std::regex_replace(info, Host, REDIRECT_TO_HOST);
         }
         /* else if (std::regex_search(info, std::regex(ENC("player.platform")))) { // idk if this even works
             if (version == S13)
@@ -62,7 +61,7 @@ auto Hijacked_curl_easy_setopt(CURL* Curl, uintptr_t opt, va_list info) -> CURLc
         } */
 #else
         if (std::regex_search(info, Host)) {
-            url = std::regex_replace(info, Host, FNhost);
+            url = std::regex_replace(info, Host, REDIRECT_TO_HOST);
         }
 #endif
         return curl_easy_setopt_original(Curl, opt, url.c_str());
