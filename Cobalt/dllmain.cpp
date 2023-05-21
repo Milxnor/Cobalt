@@ -95,6 +95,13 @@ DWORD WINAPI Main(LPVOID)
     FILE* fptr;
     freopen_s(&fptr, "CONOUT$", "w+", stdout);
 
+    std::cout << "Initializing Cobalt (made by Milxnor#3531).\n";
+
+    std::cout << "Credits\n\n";
+
+    std::cout << "Memcury - https://github.com/kem0x/Memcury\n";
+    std::cout << "Neonite++ for the signatures and curl hook - https://github.com/PeQuLeaks/NeonitePP-Fixed/tree/1.4\n\n";
+
     Memcury::VEHHook::Init();
 
     bool curlResult = InitializeCurlHook();

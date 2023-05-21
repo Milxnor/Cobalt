@@ -1,5 +1,5 @@
 #pragma once
 
-#define URL_PROTOCOL XOR("http")
-#define URL_HOST XOR("127.0.0.1")
-#define URL_PORT XOR("3551")
+#define URL_PROTOCOL "http"
+#define URL_HOST "127.0.0.1"
+#define URL_PORT "3551"
