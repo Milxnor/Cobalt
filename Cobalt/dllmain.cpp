@@ -90,10 +90,12 @@ void InitializeExitHook()
 
 DWORD WINAPI Main(LPVOID)
 {
+#ifdef SHOW_WINDOWS_CONSOLE
     AllocConsole();
 
     FILE* fptr;
     freopen_s(&fptr, "CONOUT$", "w+", stdout);
+#endif SHOW_WINDOWS_CONSOLE
 
     std::cout << "Initializing Cobalt (made by Milxnor#3531).\n";
 
