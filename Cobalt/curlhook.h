@@ -55,18 +55,46 @@ inline CURLcode CurlEasySetOptDetour(struct Curl_easy* data, CURLoption tag, ...
 
 		Uri uri = Uri::Parse(url);
 
-#ifdef URL_HOST
+		// std::cout << "Path: " << uri.Path << '\n';
 
+#ifdef URL_HOST
 		if (uri.Host.ends_with(XOR("ol.epicgames.com"))
 			|| uri.Host.ends_with(XOR(".akamaized.net"))
 			|| uri.Host.ends_with(XOR("on.epicgames.com"))
 			|| uri.Host.ends_with(XOR("game-social.epicgames.com"))
 			|| uri.Host.contains(XOR("superawesome.com")))
 		{
-			url = Uri::CreateUri(URL_PROTOCOL, URL_HOST, URL_PORT, uri.Path, uri.QueryString);
+			if (CobaltUsage == ECobaltUsage::Private)
+			{
+				url = Uri::CreateUri(URL_PROTOCOL, URL_HOST, URL_PORT, uri.Path, uri.QueryString);
+			}
+			else if (CobaltUsage == ECobaltUsage::Hybrid)
+			{
+				if (CobaltUsage == ECobaltUsage::Hybrid) {
+					if (uri.Path.contains("/fortnite/api/v2/versioncheck/")) {
+						url = Uri::CreateUri(URL_PROTOCOL, URL_HOST, URL_PORT, uri.Path, uri.QueryString);
+					}
+					else if (uri.Path.contains("/fortnite/api/game/v2/profile")) {
+						url = Uri::CreateUri(URL_PROTOCOL, URL_HOST, URL_PORT, uri.Path, uri.QueryString);
+					}
+					else if (uri.Path.contains("/content/api/pages/fortnite-game")) {
+						url = Uri::CreateUri(URL_PROTOCOL, URL_HOST, URL_PORT, uri.Path, uri.QueryString);
+					}
+					else if (uri.Path.contains("/affiliate/api/public/affiliates/slug")) {
+						url = Uri::CreateUri(URL_PROTOCOL, URL_HOST, URL_PORT, uri.Path, uri.QueryString);
+					}
+					else if (uri.Path.contains("/socialban/api/public/v1")) {
+						url = Uri::CreateUri(URL_PROTOCOL, URL_HOST, URL_PORT, uri.Path, uri.QueryString);
+					}
+					else if (uri.Path.contains("/fortnite/api/cloudstorage/system")) {
+						url = Uri::CreateUri(URL_PROTOCOL, URL_HOST, URL_PORT, uri.Path, uri.QueryString);
+					}
+				}
+			}
 		}
 
 #endif
+
 		result = CurlSetOpt_(data, tag, url.c_str());
 	}	
 

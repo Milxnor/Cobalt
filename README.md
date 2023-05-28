@@ -9,7 +9,7 @@ Go to `settings.h` and change URL_HOST and URL_PORT to what you want.
 
 Go to `settings.h` and change the variable `CobaltUsage` to `ECobaltUsage::Hybrid`.
 
-# How to connect to XMPP with fiddler open ()
+# How to connect to XMPP with fiddler open
 
 Thanks [Lawin](https://github.com/Lawin0129) for this method.<br>
 All you have to do is put this into your fiddler script.

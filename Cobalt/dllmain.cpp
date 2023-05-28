@@ -97,6 +97,10 @@ DWORD WINAPI Main(LPVOID)
     freopen_s(&fptr, "CONOUT$", "w+", stdout);
 #endif SHOW_WINDOWS_CONSOLE
 
+#ifndef URL_HOST
+    std::cout << "\n\n\n!!!!!!! URL_HOST IS NOT DEFINED !!!!!!!\n\n\n\n";
+#endif
+
     std::cout << "Initializing Cobalt (made by Milxnor#3531).\n";
 
     std::cout << "Credits\n\n";
