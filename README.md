@@ -11,8 +11,8 @@ Go to `settings.h` and change the variable `CobaltUsage` to `ECobaltUsage::Hybri
 
 # Recording Requests on latest
 
-Download [LawinServerV1](https://github.com/Lawin0129/LawinServer).<br>
-Remember to change the mode to hybrid and make sure URL_HOST is right and URL_PORT is 3551 (default LawinServerV1 port).
+[Download LawinServerV1](https://github.com/Lawin0129/LawinServer) and run `install_packages.bat` and then `start.bat`.<br><br>
+Change the mode to hybrid and make sure `URL_HOST` is `127.0.0.1` (localhost) and `URL_PORT` is 3551 (default LawinServerV1 port).
 
 ## How to have fiddler and connect to XMPP
 
