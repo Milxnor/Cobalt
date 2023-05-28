@@ -99,6 +99,8 @@ DWORD WINAPI Main(LPVOID)
 
 #ifndef URL_HOST
     std::cout << "\n\n\n!!!!!!! URL_HOST IS NOT DEFINED !!!!!!!\n\n\n\n";
+#else
+    std::cout << "Redirecting to " << URL_PROTOCOL << "://" << URL_HOST << ":" << URL_PORT << '\n';
 #endif
 
     std::cout << "Initializing Cobalt (made by Milxnor#3531).\n";

@@ -43,10 +43,10 @@ inline CURLcode CurlEasySetOptDetour(struct Curl_easy* data, CURLoption tag, ...
 	}
 
 	//Disable Proxy
-	if (tag == CURLOPT_PROXY)
+	/* if (tag == CURLOPT_PROXY)
 	{
 		result = CurlSetOpt_(data, tag, "");
-	}
+	} */
 
 	//URL redirection
 	else if (tag == CURLOPT_URL)
@@ -55,7 +55,7 @@ inline CURLcode CurlEasySetOptDetour(struct Curl_easy* data, CURLoption tag, ...
 
 		Uri uri = Uri::Parse(url);
 
-		// std::cout << "Path: " << uri.Path << '\n';
+		// std::cout << "URL: " << uri.Host << uri.Path << '\n';
 
 #ifdef URL_HOST
 		if (uri.Host.ends_with(XOR("ol.epicgames.com"))
