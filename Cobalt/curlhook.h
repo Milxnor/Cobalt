@@ -62,7 +62,8 @@ inline CURLcode CurlEasySetOptDetour(struct Curl_easy* data, CURLoption tag, ...
 			|| uri.Host.ends_with(XOR(".akamaized.net"))
 			|| uri.Host.ends_with(XOR("on.epicgames.com"))
 			|| uri.Host.ends_with(XOR("game-social.epicgames.com"))
-			|| uri.Host.contains(XOR("superawesome.com")))
+			|| uri.Host.contains(XOR("superawesome.com"))
+			|| uri.Host.contains(XOR("ak.epicgames.com")))
 		{
 			if (CobaltUsage == ECobaltUsage::Private)
 			{
