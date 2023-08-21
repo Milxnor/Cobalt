@@ -1,5 +1,6 @@
 # Cobalt
-SSL Bypass for Fortnite.
+SSL Bypass for Fortnite.<br>
+Hopefully when I have a lot of time I'll make a new SSL Bypass with a BUNCH of features.
 
 # Changing port or ip.
 
