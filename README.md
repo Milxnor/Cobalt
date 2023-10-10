@@ -1,4 +1,5 @@
 # Cobalt
+# Does not work for latest right now.
 SSL Bypass for Fortnite.<br>
 Hopefully when I have a lot of time I'll make a new SSL Bypass with a BUNCH of features.
 
