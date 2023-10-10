@@ -1,9 +1,17 @@
 #pragma once
 
+#include <iostream>
+
 void (*RequestExitWithStatus)(bool Force, unsigned char Code);
 void RequestExitWithStatusHook(bool Force, unsigned char Code)
 {
 	// printf("[VEH] RequestExitWithStatus Call Forced: %i ReturnCode: %u\n", Force, Code);
+}
+
+void (*RequestExit)(int Code);
+void RequestExitHook(int Code)
+{
+	std::cout << "REQUEST EXIT CODE: " << Code << '\n';
 }
 
 void (*UnsafeEnvironmentPopup)(wchar_t** unknown1, unsigned __int8 _case, __int64 unknown2, char unknown3);

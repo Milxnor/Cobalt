@@ -711,6 +711,41 @@ namespace Memcury
             return FindPatternEx(handle, pattern, mask, module, module + Memcury::PE::GetNTHeaders()->OptionalHeader.SizeOfImage);
         }
 
+        static std::vector<PE::Address> FindPatterns(const char* signature)
+        {
+            const auto sizeOfImage = PE::GetNTHeaders()->OptionalHeader.SizeOfImage;
+            auto patternBytes = ASM::pattern2bytes(signature);
+            const auto scanBytes = reinterpret_cast<std::uint8_t*>(PE::GetModuleBase());
+
+            const auto s = patternBytes.size();
+            const auto d = patternBytes.data();
+
+            std::vector<PE::Address> addresses;
+
+            for (auto i = 0ul; i < sizeOfImage - s; ++i)
+            {
+                bool found = true;
+                for (auto j = 0ul; j < s; ++j)
+                {
+                    if (scanBytes[i + j] != d[j] && d[j] != -1)
+                    {
+                        found = false;
+                        break;
+                    }
+                }
+
+                if (found)
+                {
+                    addresses.push_back(reinterpret_cast<uintptr_t>(&scanBytes[i]));
+                    // break;
+                }
+            }
+
+            // MemcuryAssertM(add != 0, "FindPattern return nullptr");
+
+            return addresses;
+        }
+
         static auto FindPattern(const char* signature) -> Scanner
         {
             PE::Address add{ nullptr };
