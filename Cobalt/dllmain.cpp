@@ -21,6 +21,9 @@ auto FindPushWidget()
     if (!pattern)
         pattern = sigscan("48 8B C4 4C 89 40 18 48 89 50 10 48 89 48 08 55 53 56 57 41 54 41 55 41 56 41 57 48 8D 68 B8 48 81 EC ? ? ? ? 65 48 8B 04 25"); // 26.00+ or sum
 
+    if (!pattern)
+        pattern = sigscan("48 8B C4 48 89 58 10 48 89 70 18 48 89 78 20 55 41 56 41 57 48 8D 68 A1 48 81 EC ? ? ? ? 65 48 8B 04 25 ? ? ? ? 48 8B F9 B9 ? ? ? ? 49"); // 28.00+ or sum
+
     return pattern;
 }
 
@@ -66,7 +69,7 @@ bool InitializeCurlHook()
         }
     }
 
-    if (!CurlEasySetOptAddr)
+    if (!CurlEasySetOptAddr) // impossibel ol
     {
         std::cout << "Failed to find CurlEasySetOptAddr!\n";
         return false;
@@ -77,6 +80,9 @@ bool InitializeCurlHook()
     if (!CurlSetOptAddr)
     {
         CurlSetOptAddr = sigscan("48 89 5C 24 08 48 89 6C 24 10 56 57 41 56 48 83 EC 50 33 ED 49 8B F0 8B DA 48 8B F9");
+
+        if (!CurlSetOptAddr)
+            CurlSetOptAddr = sigscan("48 89 5C 24 ? 55 56 57 41 56 41 57 48 83 EC 50 33 DB 49 8B F0 48 8B F9 8B EB 81 FA"); // tested 28.00
     }
 
     if (!CurlSetOptAddr)
@@ -142,6 +148,9 @@ void InitializeExitHook()
     if (!UnsafeEnvironmentPopupAddr)
     {
         UnsafeEnvironmentPopupAddr = sigscan("4C 8B DC 55 49 8D AB ? ? ? ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ?");
+
+        if (!UnsafeEnvironmentPopupAddr)
+            UnsafeEnvironmentPopupAddr = sigscan("48 89 5C 24 ? 55 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 ? ? ? ? 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 85 ? ? ? ? 80 B9 ? ? ? ? ? 48 8B DA 48 8B F1");
     }
 
     if (!UnsafeEnvironmentPopupAddr)
@@ -149,11 +158,15 @@ void InitializeExitHook()
         std::cout << "Failed to find UnsafeEnvironmentPopupAddr (This may be fine)!\n";
     }
 
+    // probably unnneeeded
     auto RequestExitWithStatusAddr = sigscan("48 89 5C 24 ? 57 48 83 EC 40 41 B9 ? ? ? ? 0F B6 F9 44 38 0D ? ? ? ? 0F B6 DA 72 24 89 5C 24 30 48 8D 05 ? ? ? ? 89 7C 24 28 4C 8D 05 ? ? ? ? 33 D2 48 89 44 24 ? 33 C9 E8 ? ? ? ?");
 
     if (!RequestExitWithStatusAddr)
     {
-        RequestExitWithStatusAddr = sigscan("48 8B C4 48 89 58 18 88 50 10 88 48 08 57 48 83 EC 30"); // wrong on latest but idgaf
+        RequestExitWithStatusAddr = sigscan("48 8B C4 48 89 58 18 88 50 10 88 48 08 57 48 83 EC 30"); // ion know whta version this for
+
+        if (!RequestExitWithStatusAddr)
+            RequestExitWithStatusAddr = sigscan("4C 8B DC 49 89 5B 08 49 89 6B 10 49 89 73 18 49 89 7B 20 41 56 48 83 EC 30 80 3D ? ? ? ? ? 49 8B"); // dk how often this change
     }
 
     if (!RequestExitWithStatusAddr)

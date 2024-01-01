@@ -3,7 +3,7 @@
 #include <iostream>
 
 void (*RequestExitWithStatus)(bool Force, unsigned char Code);
-void RequestExitWithStatusHook(bool Force, unsigned char Code)
+void RequestExitWithStatusHook(bool Force, unsigned char Code) // 3 args newer version
 {
 	// printf("[VEH] RequestExitWithStatus Call Forced: %i ReturnCode: %u\n", Force, Code);
 }
