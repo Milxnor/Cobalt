@@ -23,6 +23,15 @@ inline CURLcode CurlSetOpt_(struct Curl_easy* data, CURLoption option, ...)
 	return result;
 }
 
+std::string ReplaceString(std::string subject, const std::string& search, const std::string& replace) {
+	size_t pos = 0;
+	while ((pos = subject.find(search, pos)) != std::string::npos) {
+		subject.replace(pos, search.length(), replace);
+		pos += replace.length();
+	}
+	return subject;
+}
+
 #define XOR
 
 inline CURLcode CurlEasySetOptDetour(struct Curl_easy* data, CURLoption tag, ...)
@@ -52,6 +61,13 @@ inline CURLcode CurlEasySetOptDetour(struct Curl_easy* data, CURLoption tag, ...
 		std::string url = va_arg(arg, char*);
 
 		Uri uri = Uri::Parse(url);
+
+		if (bIsS13Epic)
+		{
+			// this *should* work
+			uri.QueryString = ReplaceString(uri.QueryString.data(), "Windows", "IOS"); 
+			url = ReplaceString(uri.QueryString.data(), "Windows", "IOS"); // Uhh this should be fine
+		}
 
 		std::cout << "URL: " << uri.Host << uri.Path << '\n';
 

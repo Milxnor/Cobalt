@@ -15,3 +15,4 @@ enum class ECobaltUsage
 #define SHOW_WINDOWS_CONSOLE
 
 constexpr static ECobaltUsage CobaltUsage = ECobaltUsage::Private;
+constexpr bool bIsS13Epic = false; // S13 Hybrid Windows -> IOS fake
