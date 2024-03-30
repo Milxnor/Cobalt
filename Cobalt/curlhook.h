@@ -64,9 +64,17 @@ inline CURLcode CurlEasySetOptDetour(struct Curl_easy* data, CURLoption tag, ...
 
 		if (bIsS13Epic)
 		{
-			// this *should* work
-			uri.QueryString = ReplaceString(uri.QueryString.data(), "Windows", "IOS"); 
-			url = ReplaceString(uri.QueryString.data(), "Windows", "IOS"); // Uhh this should be fine
+			if (!uri.QueryString.empty())
+			{
+				// this *should* work
+				std::cout << "before query: " << uri.QueryString << '\n';
+				uri.QueryString = ReplaceString(uri.QueryString.data(), "Windows", "IOS");
+				std::cout << "after query: " << uri.QueryString << '\n';
+			}
+			else
+			{
+				std::cout << "Empty query!\n";
+			}
 		}
 
 		std::cout << "URL: " << uri.Host << uri.Path << '\n';
