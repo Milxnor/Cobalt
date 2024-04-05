@@ -1,4 +1,5 @@
 # Cobalt
+Better alternative for other platforms & only private server [Sinum](https://github.com/projectnovafn/Sinum)
 # Private server for latest does not work because of EOS
 SSL Bypass for Fortnite.<br>
 Hopefully when I have a lot of time I'll make a new SSL Bypass with a BUNCH of features.
