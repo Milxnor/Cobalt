@@ -18,7 +18,7 @@ Go to `settings.h` and change the variable `CobaltUsage` to `ECobaltUsage::Hybri
 ## Recording requests on latest
 
 [Download LawinServerV1](https://github.com/Lawin0129/LawinServer) and run `install_packages.bat` and then `start.bat`.<br><br>
-In Cobalt, change the mode to hybrid ([tutorial](https://github.com/Milxnor/Cobalt#enabling-hybrid)) and make sure `URL_HOST` is `127.0.0.1` (localhost) and `URL_PORT` is 3551 (default LawinServerV1 port) in `settings.h`.
+In Cobalt, change the mode to hybrid ([tutorial](https://github.com/Milxnor/Cobalt#how-to-enable-hybrid)) and make sure `URL_HOST` is `127.0.0.1` (localhost) and `URL_PORT` is 3551 (default LawinServerV1 port) in `settings.h`.
 
 ## How to have Fiddler open and connect to XMPP and matchmaker
 
